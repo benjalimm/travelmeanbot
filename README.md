@@ -20,11 +20,11 @@ Server for the TravelBot
 
 ## API Endpoints
 
-GET POST PUT DELETE /api/users
-GET POST PUT DELETE /api/deals
+- GET POST PUT DELETE /api/users
+- GET POST PUT DELETE /api/deals
 
 
 ## TODOs
 
-- Setup Express with API endpoints
-- Connect to MongoDB for data store
+- [ ] Setup Express with API endpoints
+- [ ] Connect to MongoDB for data store
