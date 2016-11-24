@@ -13,11 +13,15 @@ Server and dashboard for the TravelBot app
 
 ## Get Started
 
+![](docs/terminal.jpg)
+
 1. Git clone this repo
 
-2. Run nodemon server.js
+2. Run ```mongod```
 
-3. Run ngrok https 8080
+2. Run ```nodemon server.js```
+
+3. Run ```ngrok https 8080```
 
 
 ## API Endpoints
