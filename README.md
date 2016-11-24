@@ -18,9 +18,15 @@ Server and dashboard for the TravelBot app
 1. Git clone this repo
 
 2. Run ```mongod```
+<<<<<<< HEAD
 
 2. Run ```nodemon server.js```
 
+=======
+
+2. Run ```nodemon server.js```
+
+>>>>>>> 3f9447b3f73ce774ea779774e58318de47c89bb1
 3. Run ```ngrok https 8080```
 
 
