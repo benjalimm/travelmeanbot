@@ -20,6 +20,8 @@ Server for the TravelBot
 
 ## API Endpoints
 
+![](docs/insomnia.jpg)
+
 - GET POST PUT DELETE /api/users
 - GET POST PUT DELETE /api/deals
 
