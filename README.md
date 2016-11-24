@@ -1,6 +1,8 @@
 # TravelBot-Server
 
-Server for the TravelBot
+![](docs/dash.jpg)
+
+Server and dashboard for the TravelBot app
 
 ## Technologies
 
@@ -11,14 +13,20 @@ Server for the TravelBot
 
 ## Get Started
 
+![](docs/terminal.jpg)
+
 1. Git clone this repo
 
-2. Run nodemon server.js
+2. Run ```mongod```
 
-3. Run ngrok https 8080
+2. Run ```nodemon server.js```
+
+3. Run ```ngrok https 8080```
 
 
 ## API Endpoints
+
+![](docs/insomnia.jpg)
 
 - GET POST PUT DELETE /api/users
 - GET POST PUT DELETE /api/deals
