@@ -1,6 +1,8 @@
 # TravelBot-Server
 
-Server for the TravelBot
+![](docs/dash.jpg)
+
+Server and dashboard for the TravelBot app
 
 ## Technologies
 
