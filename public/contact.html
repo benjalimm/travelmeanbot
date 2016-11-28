@@ -19,7 +19,7 @@
     <p ng-if="contact.home.city">Home Airport (city): {{ contact.home.city }} </p>
     <p ng-if="contact.dest.code"> Destination Airport (code): <a ng-href="https://www.world-airport-codes.com/search/?s={{ contact.dest.code }}" target="_blank">{{ contact.dest.code }}</a></p>
     <p ng-if="contact.dest.city"> Destination Airport (city):  {{ contact.dest.city }} </p>
-    <p ng-if="contact.not_rate"> Destination Airport (city):  {{ contact.not_rate}} </p>
+    <p ng-if="contact.not_rate"> Notification rate:  {{ contact.not_rate}} </p>
     <p>
       <button style="margin-top:20px" class="btn btn-default" ng-click="toggleEdit()">Edit</button>
       <a style="margin-top:20px" class="btn btn-default" href="#/">Back</a>
