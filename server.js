@@ -14,6 +14,7 @@ app.use(bodyParser.json());
 var db;
 var mongoUri = "mongodb://localhost:27017/";
 
+
 // Connect to the database before starting the application server.
 mongodb.MongoClient.connect(mongoUri, function (err, database) {
   if (err) {
