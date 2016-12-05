@@ -1,26 +1,38 @@
 var express = require("express");
 var path = require("path");
 var bodyParser = require("body-parser");
-var mongodb = require("mongodb");
-var ObjectID = mongodb.ObjectID;
+var mongoose = require ('mongoose');
+// var mongodb = require("mongodb");
+var ObjectID = mongoose.Types.ObjectID;
 
 var CONTACTS_COLLECTION = "contacts";
 
 var app = express();
+
+var api = express.Router()
+require('./server/routes/api')(api);
+
+app.use('/api', api)
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.json());
 
 // Create a database variable outside of the database connection callback to reuse the connection pool in your app.
 var db;
-var mongoUri = "mongodb://localhost:27017/";
+var mongoUri = "mongodb://localhost:27017/"
 
 
 // Connect to the database before starting the application server.
-mongodb.MongoClient.connect(mongoUri, function (err, database) {
+// mongodb.MongoClient.connect(mongoUri, function (err, database) {
+//   if (err) {
+//     console.log(err);
+//     process.exit(1);
+//   }
+
+mongoose.connect(mongoUri, function(err, database) {
   if (err) {
-    console.log(err);
+    console.log (err);
     process.exit(1);
-  }
+}
 
   // Save database object from the callback for reuse.
   db = database;
@@ -46,7 +58,7 @@ function handleError(res, reason, message, code) {
  *    POST: creates a new contact
  */
 
-app.get("/contacts", function(req, res) {
+app.get("/", function(req, res) {
   db.collection(CONTACTS_COLLECTION).find({}).toArray(function(err, docs) {
     if (err) {
       handleError(res, err.message, "Failed to get contacts.");
@@ -56,7 +68,7 @@ app.get("/contacts", function(req, res) {
   });
 });
 
-app.post("/contacts", function(req, res) {
+app.post("/", function(req, res) {
   var newContact = req.body;
   newContact.createDate = new Date();
 
