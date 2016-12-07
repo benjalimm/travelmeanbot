@@ -1,0 +1,45 @@
+<div class="row" ng-hide="contact._id">
+  <div class="col-md-6">
+      <h2>Create new contact</h2>
+  </div>
+</div>
+<div class="container">
+  <div>
+    <p>
+      <label>First Name (required)</label>
+      <input id="name" class="form-control" type="text" ng-model="contact.firstName" required>
+    </p>
+    <p>
+      <label>Last Name (required)</label>
+      <input id="name" class="form-control" type="text" ng-model="contact.lastName" required>
+    </p>
+    <p>
+      <label>Facebook ID (required)</label>
+      <input id="name" class="form-control" type="text" ng-model="contact.fbid" required>
+    </p>
+    <p>
+      <label>Home Airport (code)</label>
+      <input id="name" class="form-control" type="text" ng-model="contact.home.code">
+    </p>
+    <p>
+      <label>Home Airport (city)</label>
+      <input id="name" class="form-control" type="text" ng-model="contact.home.city">
+    </p>
+    <p>
+      <label>Destination Airport (code)</label>
+      <input id="name" class="form-control" type="text" ng-model="contact.dest.code">
+    </p>
+    <p>
+      <label>Destination Airport (city)</label>
+      <input id="name" class="form-control" type="text" ng-model="contact.dest.city">
+    </p>
+    <p>
+      <label>Notification Rate</label>
+      <input id="name" class="form-control" type="text" ng-model="contact.not_rate">
+    </p>
+    <p>
+      <button style="margin-top:20px" class="btn btn-default" ng-click="saveContact(contact)">Save</button>
+      <button style="margin-top:20px" class="btn btn-default" ng-click="back()">Back</button>
+    </p>
+  </div>
+</div>
