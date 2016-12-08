@@ -93,8 +93,6 @@ function handleError(res, reason, message, code) {
  *    DELETE: deletes contact by id
  */
 
- //moved api.js to server.js
-var User = require('./server/models/user');
 
  router.use(function(req, res, next) {
      // do logging
@@ -107,7 +105,7 @@ var User = require('./server/models/user');
      res.json({ message: 'Testing API: Get request receieved.' });
  });
 
- app.use('/api',router);
+var User = require('./server/models/user');
 
  router.route('/users')
 
@@ -137,9 +135,166 @@ var User = require('./server/models/user');
          throw err;
        } else {
          res.json(data) // this creates a new user and sends it back
+         console.log("USER POSTED!");
        }
      });
+   })
+
+
+   .get(function(req, res) {
+       User.find(function(err, users) {
+           if (err)
+               res.send(err);
+           res.json(users)
+           console.log("ALL USERS FOUND!");
+       });
    });
+
+   router.route('/users/:user_id')
+
+    // get the user id
+    .get(function(req, res) {
+        User.findById(req.params.user_id, function(err, user) {
+            if (err)
+                res.send(err);
+            res.json(user)
+            console.log("USER ID: " + req.params.user_id + " FOUND!");
+        });
+    })
+
+    // update the user id
+    .put(function(req, res) {
+
+        // find user we want
+        User.findById(req.params.user_id, function(err, user) {
+
+            if (err)
+                res.send(err);
+
+                // update the user info
+                user.firstName = req.body.firstName;
+                user.lastName = req.body.lastName;
+                user.email = req.body.email;
+                user.fbid = req.body.fbid;
+               //  user.home.city = req.body.home.city;
+               //  user.home.code = req.body.home.code;
+               //  user.dream.city = req.body.dream.city;
+               //  user.dream.code = req.body.dream.code;
+
+            // save the bear
+            user.save(function(err, data) {
+                if (err)
+                    res.send(err);
+
+                res.json(data)
+                console.log("USER ID: " + req.params.user_id + " UPDATED!");
+            });
+
+        });
+    })
+
+    .delete(function(req, res) {
+    User.remove({
+        _id: req.params.user_id
+    }, function(err, user) {
+        if (err)
+            res.send(err);
+
+        res.json({ message: 'USER ID: '+ req.params.user_id + ' successfully deleted' })
+        console.log("USER ID: " + req.params.user_id + " DELETED!");
+    });
+});
+
+// api/deal
+
+var Deal = require('./server/models/deal');
+
+ router.route('/deals')
+
+   .post(function(req, res) {
+     console.log(req.body) // this outputs the body data sent in
+
+     // this creates a new deal object
+     var deal = new Deal();
+
+     // this assigns the data sent in to the deal object
+     deal.location = req.body.location;
+     deal.price = req.body.price;
+
+     // this saves the deal
+     deal.save(function(err, data) {
+       if (err) {
+         throw err;
+       } else {
+         res.json(data) // this creates a new deal and sends it back
+         console.log("DEAL POSTED!");
+       }
+     });
+   })
+
+
+   .get(function(req, res) {
+       Deal.find(function(err, deals) {
+           if (err)
+               res.send(err);
+           res.json(deals)
+           console.log("ALL DEALS FOUND!");
+       });
+   });
+
+   router.route('/deals/:deal_id')
+
+    // get the deal id
+    .get(function(req, res) {
+        Deal.findById(req.params.deal_id, function(err, deal) {
+            if (err)
+                res.send(err);
+            res.json(deal)
+            console.log("DEAL ID: " + req.params.deal_id + " FOUND!");
+        });
+    })
+
+    // update the deal id
+    .put(function(req, res) {
+
+        // find user we want
+        Deal.findById(req.params.deal_id, function(err, deal) {
+
+            if (err)
+                res.send(err);
+
+                // update the deal info
+                deal.location = req.body.location;
+                deal.price = req.body.price;
+
+            // save the bear
+            deal.save(function(err, data) {
+                if (err)
+                    res.send(err);
+
+                res.json(data)
+                console.log("DEAL ID: " + req.params.user_id + " UPDATED!");
+            });
+
+        });
+    })
+
+    .delete(function(req, res) {
+    Deal.remove({
+        _id: req.params.deal_id
+    }, function(err, deal) {
+        if (err)
+            res.send(err);
+
+        res.json({ message: 'DEAL ID: '+ req.params.deal_id + ' successfully deleted' })
+        console.log("DEAL ID: " + req.params.deal_id + " DELETED!");
+    });
+});
+
+// routes prefixed with /api
+app.use('/api',router);
+
+
 
 
 // app.get("/contacts/:id", function(req, res) {
